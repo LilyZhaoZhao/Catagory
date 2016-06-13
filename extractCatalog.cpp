@@ -31,7 +31,7 @@ void fact(string whichDay,string poi, string userCatgFile, string apCatgFile){
       ofstream ofs1(userCatgFile.c_str());//userCatgvector
       ofstream ofs2(apCatgFile.c_str());//catgStimeEtime
 
-      ifstream ifs1(poi.c_str());//shenzhen_macCatalogint
+      ifstream ifs1(poi.c_str());//shenzhen_macCatalogsmall
       string mac, lat, lon, catalog;
       string token,line;
       int count = 0;
@@ -71,7 +71,7 @@ void fact(string whichDay,string poi, string userCatgFile, string apCatgFile){
       string end_time, guid, bssid, connect_time;
       time_t t;
       int catalogint;
-      vector< int > arry(16, 0);//初始化ap类别频次矩阵，全部值初始化为1
+      vector< int > arry(111, 0);//初始化ap类别频次矩阵，全部值初始化为0
       int end_hour = 0, star_hour = 0;
       while(getline(ifs2, line)){
   			  istringstream iss(line);
@@ -111,15 +111,15 @@ void fact(string whichDay,string poi, string userCatgFile, string apCatgFile){
                   userCatg[guid] = arry;//?????
               }
 	             catalog = filter[bssid];
-	              catalogint = atoi(catalog.c_str()); //string to int
+	          //    catalogint = atoi(catalog.c_str()); //string to int
              // cout<<catalogint<<endl;
-	            userCatg[guid][catalogint-1] += 1;
+	          //  userCatg[guid][catalogint-1] += 1;
 
-              ofs2<<catalog<<','<<connect_time <<','<<end_time<<endl; //ofs2: ap类别，开始时间，结束时间
+              ofs2<<guid<<','<<catalog<<','<<connect_time <<','<<end_time<<endl; //ofs2: ap类别，开始时间，结束时间
 
           }
   	  }
-
+/*
       for(map<string,vector<int> >::const_iterator it=userCatg.begin(); it!=userCatg.end(); ++it){
           ofs1<< it->first ;
           vector<int> ::const_iterator it2 = it->second.begin();
@@ -128,7 +128,7 @@ void fact(string whichDay,string poi, string userCatgFile, string apCatgFile){
           }
           ofs1<<endl; //ofs1: 每个用户对不同类别ap的连接次数
       }
-
+*/
       //int op(int a,int b){return a+b;}
       /*
       string u, ap;
