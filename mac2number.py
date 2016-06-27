@@ -19,7 +19,7 @@ def mac2num(s1,s2,s3):
 
     for line in fr2.readlines():
         line = line.strip('\n')
-        l = line.split(',')
+        l = line.split(' ')
         mac = l[0]
         num = no[mac]
         fw.write(line+','+str(num)+'\n')
