@@ -17,7 +17,7 @@ def getMacDict(s):
 
 if __name__=="__main__":
     #s1="~/Documents/data/bupt/apnum/commercial/apnum0316_commercial"
-    s1="apnum16_22"
+    s1="apnum16_22_star2endhour"
     dict1 = getMacDict(s1)
 
     no = {} #no[ssid]=clusterNo.
@@ -29,7 +29,8 @@ if __name__=="__main__":
     fr3.close()
 
     fr2 = open('buptpoi16_22','r')
-    fw = open('apnumpoi16_22','w')
+    #fw = open('apnumpoi16_22','w')
+    fw = open('apnumpoi16_22_star2endhour','w')
     for l in fr2.readlines():
         l = l.strip('\n')
         l = l.split('|')

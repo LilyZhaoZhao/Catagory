@@ -28,10 +28,10 @@ bool cmp_by_value(const PAIR& lhs, const PAIR& rhs){
 void fact(string whichDay,string poi, string apNumFile){
       ifstream ifs2(whichDay.c_str()); // TecentData/wifi_conn/20150316/safe_wifi_connect_sample_export
 
-      ofstream ofs1(apNumFile.c_str());// bupt/apnum0316
+      ofstream ofs1(apNumFile.c_str());// bupt/apnum0316 or apnum/0316
       //ofstream ofs2(apCatgFile.c_str());//catgStimeEtime
 
-      ifstream ifs1(poi.c_str());//  bupt/bupt_poi
+      ifstream ifs1(poi.c_str());//  bupt/bupt_poi  or apnum/buptpoi16_22
       string mac, lat, lon, ssid;
       string token,line;
       int count = 0;
@@ -79,13 +79,15 @@ void fact(string whichDay,string poi, string apNumFile){
   		    while(getline(iss, token, '|')){
   			      count ++;
               switch(count){
-              //case 1:
-              //    end_time = token;
-                  //end_time = end_time.split(' ')
-                  //end_time = end_time[1]
-                  //end_time = end_time.split(':')
-                  //end_hour = int(end_time[0])
-              //    break;
+                case 1:
+                    end_time = token;
+                    char buf[128];
+                    strcpy(buf,token.c_str());
+                    struct tm tm_;
+                    strptime(buf, "%Y-%m-%d %H:%M:%S", &tm_); //将字符串转换为tm时间
+
+                    end_hour = int(tm_.tm_hour);
+                    break;
               case 2:
                   guid = token;
                   break;
@@ -114,7 +116,8 @@ void fact(string whichDay,string poi, string apNumFile){
 
           //    catalogint = atoi(catalog.c_str()); //string to int
            // cout<<catalogint<<endl;
-            apTime[bssid][star_hour] += 1;
+           for(int h=star_hour; h<=end_hour;h++)
+              apTime[bssid][h] += 1;
           }
 	          //    catalogint = atoi(catalog.c_str()); //string to int
              // cout<<catalogint<<endl;
