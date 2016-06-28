@@ -21,26 +21,26 @@ def getDict(s):
 
 if __name__=="__main__":
     #s1="~/Documents/data/bupt/apnum/commercial/apnum0316_commercial"
-    s1="0316"
+    s1="0323"
     dict1 = getDict(s1)
-    s2="0317"
+    s2="0324"
     dict2 = getDict(s2)
-    s3="0318"
+    s3="0325"
     dict3 = getDict(s3)
-    s4="0319"
+    s4="0326"
     dict4 = getDict(s4)
-    s5="0320"
+    s5="0327"
     dict5 = getDict(s5)
-    s6="0321"
+    s6="0328"
     dict6 = getDict(s6)
-    s7="0322"
+    s7="0329"
     dict7 = getDict(s7)
 
     a = set(dict3.keys()).intersection(set(dict1.keys()).intersection(set(dict2.keys())))
     b = set(dict7.keys()).intersection(set(dict6.keys()).intersection(set(dict5.keys())))
     c = set(dict4.keys()).intersection(a.intersection(b))
 
-    fw = open('apnum16_22','w')
+    fw = open('apnum23_29','w')
     for k in c:
         fw.write(k+' ')
         l = dict1[k]
